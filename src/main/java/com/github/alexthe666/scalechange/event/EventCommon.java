@@ -1,18 +1,20 @@
 package com.github.alexthe666.scalechange.event;
 
 import net.ilexiconn.llibrary.common.entity.EntityHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
+import com.github.alexthe666.scalechange.ScaleChange;
 import com.github.alexthe666.scalechange.entity.EntityScaleChangePlayer;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class EventCommon {
 
@@ -28,20 +30,7 @@ public class EventCommon {
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event)
 	{
-		EntityHelper.setScale(event.entity, 0.125F);
-		event.entityLiving.stepHeight = 0.5F * 0.125F;
-		event.entityLiving.entityCollisionReduction = 1 - 0.125F;
-		//event.entityLiving.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000149011612D * 0.125D);
-		if(event.entityLiving instanceof EntityPlayer){
-			//		EntityHelper.setScale(event.entity, 1F);
-
-		}
-		else{
-
-		}
-		/*if(event.entityLiving.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.movementSpeed).getAttributeValue() != EntityHelper.getScale(event.entityLiving)){
-			event.entityLiving.getAttributeMap().getAttributeInstance(SharedMonsterAttributes.movementSpeed).setBaseValue((double)EntityHelper.getScale(event.entityLiving));
-		}*/
+		ScaleChange.setupScale(event.entityLiving, 0.125F);
 	}
 
 	@SubscribeEvent

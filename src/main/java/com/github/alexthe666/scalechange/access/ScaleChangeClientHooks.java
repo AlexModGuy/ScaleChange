@@ -82,15 +82,15 @@ public class ScaleChangeClientHooks {
         float scale = EntityHelper.getScale(entitylivingbase);
         float partialTicks = LLibrary.proxy.getPartialTicks();
         float f1 = entitylivingbase.yOffset - 1.62F;
-        double d0 = scale * (entitylivingbase.prevPosX + (entitylivingbase.posX - entitylivingbase.prevPosX) * (double)partialTicks);
+        double d0 = (entitylivingbase.prevPosX + (entitylivingbase.posX - entitylivingbase.prevPosX) * (double)partialTicks);
         double d1 = entitylivingbase.prevPosY + (entitylivingbase.posY - entitylivingbase.prevPosY) * (double)partialTicks - (double)f1;
-        double d2 = scale * (entitylivingbase.prevPosZ + (entitylivingbase.posZ - entitylivingbase.prevPosZ) * (double)partialTicks);
+        double d2 = (entitylivingbase.prevPosZ + (entitylivingbase.posZ - entitylivingbase.prevPosZ) * (double)partialTicks);
         GL11.glRotatef(getFOVField(new String[]{"prevCamRoll", "field_78505_P"}) + (getFOVField(new String[]{"camRoll", "field_78495_O"}) + getFOVField(new String[]{"prevCamRoll", "field_78505_P"})) * partialTicks, 0.0F, 0.0F, 1.0F);
 
         if (entitylivingbase.isPlayerSleeping())
         {
             f1 = (float)((double)f1 + 1.0D);
-            GL11.glTranslatef(0.0F, 0.3F * scale, 0.0F);
+            GL11.glTranslatef(0.0F, 0.3F, 0.0F);
 
             if (!Minecraft.getMinecraft().gameSettings.debugCamEnable)
             {
@@ -115,6 +115,7 @@ public class ScaleChangeClientHooks {
             }
             else
             {
+
                 f6 = entitylivingbase.rotationYaw;
                 f2 = entitylivingbase.rotationPitch;
 
@@ -132,9 +133,9 @@ public class ScaleChangeClientHooks {
                     float f3 = (float)((k & 1) * 2 - 1);
                     float f4 = (float)((k >> 1 & 1) * 2 - 1);
                     float f5 = (float)((k >> 2 & 1) * 2 - 1);
-                    f3 *= (0.1F / scale);
-                    f4 *= (0.1F / scale);
-                    f5 *= (0.1F / scale);
+                    f3 *= (0.01F * scale);
+                    f4 *= (0.01F * scale);
+                    f5 *= (0.01F * scale);
                     MovingObjectPosition movingobjectposition = Minecraft.getMinecraft().theWorld.rayTraceBlocks(Vec3.createVectorHelper(d0 + (double)f3, d1 + (double)f4, d2 + (double)f5), Vec3.createVectorHelper(d0 - d3 + (double)f3 + (double)f5, d1 - d5 + (double)f4, d2 - d4 + (double)f5));
 
                     if (movingobjectposition != null)
