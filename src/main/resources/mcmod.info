@@ -1,0 +1,16 @@
+[
+{
+  "modid": "scalechange",
+  "name": "Scale Change",
+  "description": "Scale Change allows players to grow and shrink to different sizes and get cool new abilities.",
+  "version": "1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Alexthe666"],
+  "credits": "iLexiconn",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
